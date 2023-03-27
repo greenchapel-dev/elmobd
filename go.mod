@@ -1,10 +1,7 @@
 module github.com/greenchapel-dev/elmobd
 
-go 1.13
+go 1.19
 
-//replace github.com/rzetterberg/elmobd => github.com/samifruit514/elmobd master
+require github.com/tarm/serial v0.0.0-20180830185346-98f6abe2eb07
 
-require (
-	github.com/tarm/serial v0.0.0-20180830185346-98f6abe2eb07
-	golang.org/x/sys v0.6.0 // indirect
-)
+require golang.org/x/sys v0.6.0 // indirect
