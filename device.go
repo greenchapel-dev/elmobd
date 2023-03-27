@@ -17,7 +17,7 @@ import (
 // response is a space-separated string of hex bytes, which looks something
 // like this:
 //
-//   41 0C 1A F8
+//	41 0C 1A F8
 //
 // The first 2 bytes are control bytes, while the rest of the bytes represent
 // the actual result. So this data type contains an array of those bytes in
@@ -517,6 +517,11 @@ func parseOBDResponse(cmd OBDCommand, outputs []string) (*Result, error) {
 	payload := ""
 
 	for _, out := range outputs {
+		// if outputs starts with a newline then remove it
+		if strings.HasPrefix(out, "\n") {
+			// remove the \n
+			out = out[1:]
+		}
 		if strings.HasPrefix(out, "UNABLE TO CONNECT") {
 			return nil, fmt.Errorf(
 				"'UNABLE TO CONNECT' received, is the ignition on?",
