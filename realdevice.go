@@ -285,6 +285,11 @@ out:
 	dev.mutex.Unlock()
 
 	result.error = err
+	// for each dev.outputs string if it contains any \n then remove them
+	for i, s := range dev.outputs {
+		dev.outputs[i] = strings.Replace(s, "\n", "", -1)
+	}
+
 	result.outputs = dev.outputs
 	result.totalTime = time.Since(startTotal)
 
